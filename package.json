@@ -1,0 +1,28 @@
+{
+  "name": "pubsub-pg",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "prettier": {
+    "singleQuote": true
+  },
+  "scripts": {
+    "db:copy-schema": "cp **/**/*.schema.sql docker/docker-entrypoint-initdb.d/"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.0"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/exporter-metrics-otlp-grpc": "^0.57.1",
+    "@opentelemetry/resources": "^1.30.1",
+    "@opentelemetry/sdk-metrics": "^1.30.1",
+    "@opentelemetry/semantic-conventions": "^1.30.0",
+    "pg": "^8.13.2",
+    "pg-logical-replication": "^2.0.7",
+    "sql-template-strings": "^2.2.2"
+  }
+}
