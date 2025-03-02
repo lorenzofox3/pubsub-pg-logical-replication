@@ -3,36 +3,32 @@ import assert from 'node:assert';
 
 export const createEventStore = ({ db }) => {
   return {
-    getStream({ streamId }) {
+    getStream({ transactionId }) {
       return db.query(
         SQL`SELECT position,
                    event_type as type,
-                   stream_id  as "streamId",
+                   transaction_id  as "transactionId",
                    payload,
-                   meta,
                    version
-            FROM events
-            WHERE stream_id = ${streamId}
+            FROM transaction_events
+            WHERE transaction_id = ${transactionId}
             ORDER BY version`,
       );
     },
     appendEvent({ events }) {
       assert(events.length > 0, 'at least one event should be provided');
 
-      const query = SQL`INSERT INTO events(event_type, stream_id, payload, meta, version) VALUES `;
+      const query = SQL`INSERT INTO transaction_events(event_type, transaction_id, payload, version) VALUES `;
 
       for (const {
         type,
-        streamId,
+        transactionId,
         payload = null,
-        meta = null,
         version = 1,
       } of events) {
         assert(type, 'type is required');
-        assert(streamId, 'streamId is required');
-        query.append(
-          SQL`(${type}, ${streamId}, ${payload}, ${meta}, ${version})`,
-        );
+        assert(transactionId, 'transactionId is required');
+        query.append(SQL`(${type}, ${transactionId}, ${payload}, ${version})`);
       }
 
       query.append(SQL`returning position`);

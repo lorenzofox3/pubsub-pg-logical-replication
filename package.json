@@ -10,17 +10,21 @@
     "singleQuote": true
   },
   "scripts": {
-    "db:copy-schema": "cp **/**/*.schema.sql docker/docker-entrypoint-initdb.d/"
+    "db:copy-schema": "cp **/**/*.schema.sql docker/docker-entrypoint-initdb.d/",
+    "start:subscriber": "node --env-file='apps/subscriber/subscriber.env' ./apps/subscriber/index.js",
+    "start:publisher": "node --env-file='apps/publisher/publisher.env' apps/publisher/index.js"
   },
   "devDependencies": {
     "prettier": "^3.5.0"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.5.0",
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/exporter-metrics-otlp-grpc": "^0.57.1",
     "@opentelemetry/resources": "^1.30.1",
     "@opentelemetry/sdk-metrics": "^1.30.1",
     "@opentelemetry/semantic-conventions": "^1.30.0",
+    "nanoid": "^5.1.0",
     "pg": "^8.13.2",
     "pg-logical-replication": "^2.0.7",
     "sql-template-strings": "^2.2.2"
