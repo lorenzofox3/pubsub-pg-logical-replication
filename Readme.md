@@ -1,7 +1,7 @@
 # Pub/Sub with Postgres logical replication and NodeJS 
 
 This repository shows how to set up a simple yet robust pub/sub system on top of [postgres logical replication](https://www.postgresql.org/docs/current/logical-replication.html)
-It was built for writing [this blog post]()
+It was built for writing [this blog post](https://lorenzofox.dev/posts/pub-sub-pg-logical-replication/)
 
 ## Installation
 
