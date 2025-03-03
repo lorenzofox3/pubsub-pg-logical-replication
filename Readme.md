@@ -23,6 +23,10 @@ source setup-db.sh
 
 You can also start an [Open Telemetry Stack](https://github.com/grafana/docker-otel-lgtm) to have some metrics and check how behaves your system
 
+```shell
+source setup-otel.sh
+```
+
 ### subscriber process
 
 Modify the [subscription program](./apps/subscriber) and start the process
